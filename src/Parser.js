@@ -16,7 +16,10 @@ class Parser extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-
+    var dataToBeParsed = this.state.rawData;
+    var regex = '//gi';
+    var result = dataToBeParsed.match(regex);
+    console.log(result);
   }
 
   handleInputChange(event) {
