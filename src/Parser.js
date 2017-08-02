@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './Parser.css';
 import ParsedData from './ParsedData.js';
+import ExportButton from './ExportButton.js';
+import ResetButton from './ResetButton.js';
 
 class Parser extends Component {
 
@@ -10,7 +12,9 @@ class Parser extends Component {
 
     this.state = {
       rawData: "",
-      parsedData: []
+      parsedData: [],
+      activateExportButton: 0,
+      activateResetButton: 0
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -30,7 +34,9 @@ class Parser extends Component {
       let result = dataToBeParsed.match(regex);
       console.log(result);
       this.setState({
-        parsedData: result
+        parsedData: result,
+        activateExportButton: 1,
+        activateResetButton: 1
       });
     }
   }
@@ -55,11 +61,18 @@ class Parser extends Component {
         <div>
           <ParsedData parsedData={this.state.parsedData} />
         </div>
+        <div>
+          <ExportButton activateExportButton={this.state.activateExportButton} />
+        </div>
+        <div>
+          <ResetButton activateResetButton={this.state.activateResetButton} />
+        </div>
       </div>
 
 
 
     );
+
   }
 }
 
