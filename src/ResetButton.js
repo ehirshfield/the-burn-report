@@ -6,7 +6,6 @@ class ResetButton extends Component {
     super(props);
 
     this.state = {
-
     };
 
   }
@@ -14,14 +13,14 @@ class ResetButton extends Component {
   render(){
     if (this.props.activateResetButton === 1) {
       return(
-        <button>Reset</button>
+          <button onClick={this.props.handleReset}>Reset</button>
+      )
+    } else{
+      return (
+        <div></div>
       )
     }
-    return(
-      <div></div>
-    )
   }
-
 }
 
 export default ResetButton;

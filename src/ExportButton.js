@@ -14,7 +14,7 @@ class ExportButton extends Component {
   render(){
     if (this.props.activateExportButton === 1) {
       return(
-        <button>Export</button>
+        <button onClick={this.props.exportExcel}>Export</button>
       )
     }
     return(

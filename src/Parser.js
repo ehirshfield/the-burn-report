@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './Parser.css';
 import ParsedData from './ParsedData.js';
-import ExportButton from './ExportButton.js';
-import ResetButton from './ResetButton.js';
 
 class Parser extends Component {
 
@@ -16,9 +14,12 @@ class Parser extends Component {
       activateExportButton: 0,
       activateResetButton: 0
     };
-
+    //Preserve Basestate to reset with
+    this.baseState = this.state;
+    //bind methods
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleReset = this.handleReset.bind(this);
   }
 
   handleSubmit(event) {
@@ -51,22 +52,34 @@ class Parser extends Component {
     });
   }
 
+  handleReset(event){
+    event.preventDefault();
+    this.setState(this.baseState);
+  }
+
+  exportExcel(event){
+    event.preventDefault();
+    
+  }
+
   render(){
     return(
       <div>
         <form>
-          <textarea id="inputArea" type="text" value={this.state.rawData} name="rawData" placeholder="Put raw text here to parse" onChange={this.handleInputChange} />
+          <textarea id="inputArea" type="text" value={this.state.rawData}
+            name="rawData" placeholder="Put raw text here to parse" onChange={this.handleInputChange} />
           <button id="parseButton" type="submit" onClick={this.handleSubmit}>PARSE IT GOOD</button>
         </form>
         <div>
-          <ParsedData parsedData={this.state.parsedData} />
+          <ParsedData
+            parsedData={this.state.parsedData}
+            handleReset={this.handleReset}
+            activateExportButton={this.state.activateExportButton}
+            activateResetButton={this.state.activateResetButton}
+            exportExcel={this.exportExcel}
+            />
         </div>
-        <div>
-          <ExportButton activateExportButton={this.state.activateExportButton} />
-        </div>
-        <div>
-          <ResetButton activateResetButton={this.state.activateResetButton} />
-        </div>
+
       </div>
 
 
